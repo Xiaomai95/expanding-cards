@@ -1,0 +1,127 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
+    background-color: black;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    max-width: 900px;
+    /* max-width to stop the gallery image growing too big and no longer being contained in its border */
+}
+
+.gallery__image {
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* These three properties above are essential to displaying the background image properly */
+    height: 80vh;
+    border-radius: 20px;
+    flex: 0.5;
+    /* flex here affects the width and makes each image equal width */
+    position: relative;
+    /* By making position relative, when we make the h3's position absolute it'll be absolute inside its container and not absolute on the entire page */
+    transition: flex 0.7s ease-in;
+    /* NOTE: play around with this setting later */
+    cursor: pointer;
+    border: 5px rgba(253, 253, 253, 0.625) solid;
+}
+
+.gallery__image + .gallery__image {
+    margin-left: 10px;
+}
+
+.gallery__image__heading {
+    width: 50px;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    color: white;
+    opacity: 0;
+    font-size: 2.4rem;
+    display: inline;
+}
+
+.gallery__image.active {
+    flex: 8;
+}
+
+.gallery__image.active h3 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+    /* transition CSS property is a shorthand property for transition-property, transition-duration, transition-timing-function, and transition-delay. */
+}
+
+@media (max-width: 450px) {
+
+    .gallery {
+        margin: 0 20px;
+    }
+
+    .gallery__image:nth-of-type(3),
+    .gallery__image:nth-of-type(4),
+    .gallery__image:nth-of-type(5) {
+        display: none;
+    }
+}
+
+@media (min-width: 450px) {
+    
+    .gallery__image:nth-of-type(4),
+    .gallery__image:nth-of-type(5) {
+        display: none;
+    }
+    
+    .gallery__image__heading {
+        width: 150px;
+        /* allows for headings to be wider if needed */
+    }
+}
+
+@media (min-width: 600px) {
+
+    
+    .gallery__image:nth-of-type(4) {
+        display: initial;
+    }
+    
+    .gallery__image:nth-of-type(5) {
+        display: none;
+    }
+    
+    .gallery__image__heading {
+        width: 300px;
+        /* allows for headings to be wider if needed */
+    }
+}
+
+@media (min-width: 900px) {
+
+    .gallery__image:nth-of-type(5) {
+        display: initial;
+    }
+
+}
